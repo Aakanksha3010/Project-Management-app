@@ -8,8 +8,13 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_auth/Screens/Authentication/auth.dart';
+import 'package:provider/provider.dart';
+// import 'package:flutter_auth/Screens/Homepage/homepage.dart';
+import 'package:flutter_auth/Screens/Information/info.dart';
 
-class Body extends StatelessWidget {
+
+class Body extends StatefulWidget {
 
 // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 // final TextEditingController _emailController = TextEditingController();
@@ -17,6 +22,17 @@ class Body extends StatelessWidget {
 // bool _success;
 // String _userEmail;
 // final String title = 'Registration';
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  final AuthService _firebaseAuth = AuthService();
+  // final _formKey = GlobalKey<FormState>();
+  String email = "";
+  String password = "";
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +54,34 @@ class Body extends StatelessWidget {
             RoundedInputField(
               
               hintText: "Your Email",
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  email = value;
+                });
+              },
+            
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  password = value;
+                });
+              },
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () async{
+                dynamic  result = await _firebaseAuth.signUp(email: email,password: password);
+                print(result);
+                if(result == null){
+                  print("null");
+                }else{
+                  print("Successfuly registered");
+                  // Navigator.of(context).pushAndRemoveUntil(
+                  //         MaterialPageRoute(builder: (context) => InfoPage()),
+                  //         (Route<dynamic> route) => false);
+                }
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
