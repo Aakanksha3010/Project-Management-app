@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_auth/Screens/Information/info.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,15 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       initialData: null,
-      value: AuthService().userDetail, child: AuthWrapper(),
-
+      value: AuthService().userDetail,
+      child: AuthWrapper(),
     );
-    
   }
 }
 
 class AuthWrapper extends StatefulWidget {
-  const AuthWrapper({ Key key }) : super(key: key);
+  const AuthWrapper({Key key}) : super(key: key);
 
   @override
   _AuthWrapperState createState() => _AuthWrapperState();
@@ -43,12 +43,16 @@ class _AuthWrapperState extends State<AuthWrapper> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
-        theme: ThemeData(
-          primaryColor: kPrimaryColor,
-          scaffoldBackgroundColor: Colors.white,
-        ),
-      home: user!= null ? InfoPage() : WelcomeScreen(),
-      
+      theme: ThemeData(
+        primaryColor: kPrimaryColor,
+        scaffoldBackgroundColor: Colors.white,
+      ),
+      home: AnimatedSplashScreen(
+        splash: Image.asset('assets/images/project_logo.png'),
+        backgroundColor: Colors.deepPurple,
+        splashTransition: SplashTransition.scaleTransition,
+        nextScreen: WelcomeScreen(),
+      ),
     );
   }
 }
