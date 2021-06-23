@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
-import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
-import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
+// import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
+// import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_auth/Screens/Authentication/auth.dart';
-import 'package:provider/provider.dart';
-// import 'package:flutter_auth/Screens/Homepage/homepage.dart';
-import 'package:flutter_auth/Screens/Information/info.dart';
-
+// import 'package:provider/provider.dart';
+import 'package:flutter_auth/Screens/Homepage/homepage.dart';
 
 class Body extends StatefulWidget {
-
 // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 // final TextEditingController _emailController = TextEditingController();
 // final TextEditingController _passwordController = TextEditingController();
@@ -32,7 +29,6 @@ class _BodyState extends State<Body> {
   // final _formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +48,12 @@ class _BodyState extends State<Body> {
               height: size.height * 0.35,
             ),
             RoundedInputField(
-              
               hintText: "Your Email",
               onChanged: (value) {
                 setState(() {
                   email = value;
                 });
               },
-            
             ),
             RoundedPasswordField(
               onChanged: (value) {
@@ -70,16 +64,17 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () async{
-                dynamic  result = await _firebaseAuth.signUp(email: email,password: password);
+              press: () async {
+                dynamic result = await _firebaseAuth.signUp(
+                    email: email, password: password);
                 print(result);
-                if(result == null){
+                if (result == null) {
                   print("null");
-                }else{
+                } else {
                   print("Successfuly registered");
-                  // Navigator.of(context).pushAndRemoveUntil(
-                  //         MaterialPageRoute(builder: (context) => InfoPage()),
-                  //         (Route<dynamic> route) => false);
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      (Route<dynamic> route) => false);
                 }
               },
             ),
@@ -97,7 +92,7 @@ class _BodyState extends State<Body> {
                 );
               },
             ),
-    
+
             // OrDivider(),
             // Row(
             //   mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +108,7 @@ class _BodyState extends State<Body> {
             //     SocalIcon(
             //       iconSrc: "assets/icons/google-plus.svg",
             //       press: () {},
-                  
+
             //     ),
             //   ],
             // )

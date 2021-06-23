@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Login/login_screen.dart';
-import 'package:flutter_auth/main.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+// import 'package:flutter_auth/main.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:lottie/lottie.dart';
-import 'package:flutter_auth/Screens/Authentication/auth.dart';
-
-
+// import 'package:flutter_auth/Screens/Authentication/auth.dart';
 
 class InfoPage extends StatelessWidget {
   static const TextStyle goldcoinGreyStyle = TextStyle(
@@ -96,10 +94,10 @@ class InfoPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
+                                    builder: (context) => WelcomeScreen()));
                           },
                           child: Text(
-                            "Login",
+                            "Next",
                             style: goldCoinBlackStyle,
                           ),
                         )
@@ -170,10 +168,10 @@ class InfoPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
+                                    builder: (context) => WelcomeScreen()));
                           },
                           child: Text(
-                            "Login",
+                            "Next",
                             style: goldcoinGreyStyle,
                           ),
                         )
@@ -210,7 +208,7 @@ class InfoPage extends StatelessWidget {
               ),
             ),
             // 2
-             Container(
+            Container(
               color: Colors.amber,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -240,10 +238,10 @@ class InfoPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
+                                    builder: (context) => WelcomeScreen()));
                           },
                           child: Text(
-                            "Login",
+                            "Next",
                             style: goldCoinWhiteStyle,
                           ),
                         )
@@ -310,10 +308,10 @@ class InfoPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
+                                    builder: (context) => WelcomeScreen()));
                           },
                           child: Text(
-                            "Login",
+                            "Next",
                             style: goldCoinWhiteStyle,
                           ),
                         )
@@ -380,10 +378,10 @@ class InfoPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
+                                    builder: (context) => WelcomeScreen()));
                           },
                           child: Text(
-                            "Login",
+                            "Next",
                             style: goldcoinGreyStyle,
                           ),
                         )

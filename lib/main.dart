@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Authentication/auth.dart';
 import 'package:flutter_auth/Screens/Homepage/homepage.dart';
-import 'package:flutter_auth/Screens/Login/login_screen.dart';
-import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+// import 'package:flutter_auth/Screens/Login/login_screen.dart';
+// import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_auth/Screens/Information/info.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:splash_screen_view/SplashScreenView.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +39,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    print(user);
+    // print(user);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter App',
@@ -47,11 +47,24 @@ class _AuthWrapperState extends State<AuthWrapper> {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: AnimatedSplashScreen(
-        splash: Image.asset('assets/images/project_logo.png'),
+      home: SplashScreenView(
+        navigateRoute: user != null ? HomePage() : InfoPage(),
+        imageSrc: 'assets/images/splash.gif',
+        text: 'Projectholic',
+        textType: TextType.ColorizeAnimationText,
+        textStyle: TextStyle(
+          fontSize: 40.0,
+        ),
+        colors: [
+          Colors.white,
+          Colors.blue,
+          Colors.yellow,
+          Colors.red,
+        ],
+        imageSize: 600,
+        duration: 8000,
         backgroundColor: Colors.deepPurple,
-        splashTransition: SplashTransition.scaleTransition,
-        nextScreen: WelcomeScreen(),
+        pageRouteTransition: PageRouteTransition.CupertinoPageRoute,
       ),
     );
   }

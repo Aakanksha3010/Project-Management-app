@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
@@ -8,9 +8,8 @@ import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_auth/Screens/Authentication/auth.dart';
-import 'package:provider/provider.dart';
-// import 'package:flutter_auth/Screens/Homepage/homepage.dart';
-import 'package:flutter_auth/Screens/Information/info.dart';
+// import 'package:provider/provider.dart';
+import 'package:flutter_auth/Screens/Homepage/homepage.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -22,11 +21,10 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final  AuthService _firebaseAuth = AuthService();
+  final AuthService _firebaseAuth = AuthService();
   // final _formKey = GlobalKey<FormState>();
   String email = "";
   String password = "";
-
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +61,16 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: "LOGIN",
-              press: ()  async{
-                dynamic result = await _firebaseAuth.signIn(email: email, password: password);
+              press: () async {
+                dynamic result = await _firebaseAuth.signIn(
+                    email: email, password: password);
                 print(result);
-                if(result != null){
+                if (result != null) {
                   print("Logged in ");
-                   Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => InfoPage()),
-                          (Route<dynamic> route) => false);
-                }else {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      (Route<dynamic> route) => false);
+                } else {
                   print("ah");
                 }
               },
@@ -95,5 +94,3 @@ class _BodyState extends State<Body> {
     );
   }
 }
-
-
